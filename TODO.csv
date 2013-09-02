@@ -1,0 +1,17 @@
+TODO:
+Local storage saves active projects and current level
+"Rent collecting (background timer, make bar glow/pulse when time to collect)"
+Levels change which projects show up and what events can happen
+Document what we wanted to do next and how it currently works
+Tweak the events to be less severe
+Fix progress bars to scale maybe
+Deploy to azure the final thing
+Fix mobile screen size and build the latest downloads
+
+Postponed TODO:
+Bill paying
+"System for removing finished projects and making available more projects as you finish other ones, based on levels"
+
+Postponed UX:
+Design the time controls
+Redesign the table in the clipboard to show both upfront cost and down the road savings

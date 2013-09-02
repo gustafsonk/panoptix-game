@@ -1,0 +1,1327 @@
+/**
+===TABLE OF CONTENTS===
+1. Browser CSS Reset
+2. Custom Fonts
+3. General
+4. Buttons
+5. Intro Pages
+6. Top Portion (Building Image)
+7. Middle Portion (Main Progress Bars)
+8. Bottom Portion (Projects)
+9. Game Settings
+10. Pop-Ups
+11. Pop-Up Progress Bars
+12. Clipboard Backdrop (Mostly for Project List)
+13. Project List
+14. Clipboard Slider (Mostly for Bills)
+15. Level Won
+16. Game Won
+17. Game Lost
+18. Unused Loading
+**/
+
+/** START Browser CSS Reset **/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, 
+code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, 
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, 
+figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    border: 0 none;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none outside none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/** END Browser CSS Reset **/
+
+
+/** START Custom Fonts **/
+@font-face {
+    font-family: "bryant-bold";
+    src: url("../font/bryant-bold-webfont.woff") format("woff"), url("../font/bryant-bold-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "bryant-light";
+    src: url("../font/bryant-light-webfont.woff") format("woff"), url("../font/bryant-light-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "bryant";
+    src: url("../font/bryant-regular-webfont.woff") format("woff"), url("../font/bryant-regular-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "bryant-medium";
+    src: url("../font/bryant-medium-webfont.woff") format("woff"), url("../font/bryant-medium-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "mission-script";
+    src: url("../font/mission-script-webfont.woff") format("woff"), url("../font/mission-script-webfont.ttf") format("truetype");
+}
+/** END Custom Fonts **/
+
+
+/** START General **/
+body {
+    background: black;
+    cursor: default; /* Treat text elements as unselectable. */
+    font-family: 'bryant',sans-serif; /* Default font. */
+    -webkit-user-select: none; /* Disable user selection for everything. */
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+#container {
+    background-image: url("../img/loading-bg.jpg");
+    background-size: 100% auto;
+    height: 480px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 320px;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+/* Make certain sections appear clickable. */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Default font styles. */
+h1 {
+    color: #454545;
+    font-family: 'bryant-bold';
+    font-size: 16px;
+    line-height: 1.3em;
+    text-align: center;
+    text-transform: uppercase;
+}
+h2 {
+    color: #333;
+    font-family: 'bryant-bold';
+    font-size: 14px;
+    text-transform: uppercase;
+}
+strong {
+    font-family: 'bryant-bold';
+    font-weight: bold;
+}
+
+/* Gives a dark background to focus attention on an overlying screen. */
+#overlay {
+    background: rgba(0, 0, 0, 0.2);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+/** END General **/
+
+
+/** START Buttons **/
+.btn-group {
+    text-align: center;
+}
+.btn-group .button {
+    display: inline-block;
+}
+.button {
+    background: #CCC;
+    border-radius: 4px;
+    display: inline-block;
+    font-family: 'bryant-bold';
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 110px;
+}
+.button.green {
+    background: -webkit-linear-gradient(#8DDA5F, #59CA19);
+    background: linear-gradient(#8DDA5F, #59CA19);
+    border-color: #59CA19 #4EAC18 #449418;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 1px 1px rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 15px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+.button.transparent {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+    border: 1px solid white;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    color: #B3B3B3;
+    text-shadow: 0 1px white;
+}
+.button.transparent:hover {
+    color: gray;
+}
+.button.medium {
+    display: block;
+    font-size: 18px;
+    height: 35px;
+    line-height: 35px;
+    margin: auto;
+    width: 150px;
+}
+.button.center {
+    display: block;
+    float: none;
+    margin: auto !important;
+}
+/** END Buttons **/
+
+
+/** START Intro Pages **/
+.link {
+    color: #5DB4FF;
+    font-family: 'bryant-bold';
+    font-size: 15px;
+    text-shadow: 0 1px 1px black;
+    text-transform: uppercase;
+}
+.close {
+    background: url("../img/icon-close.png");
+    height: 17px;
+    overflow: hidden;
+    position: absolute;
+    right: 32px;
+    text-indent: 100%;
+    top: 48px;
+    white-space: nowrap;
+    width: 17px;
+}
+
+.set-up {
+    background-image: url("../img/intro-bg.jpg");
+    background-size: 100% auto;
+    display: inline-block;
+    height: inherit;
+    text-align: center;
+    width: inherit;
+}
+.set-up img {
+    display: block;
+}
+.set-up h1 {
+    margin: 35px auto 27px;
+    overflow: hidden;
+    text-indent: 200%;
+    white-space: nowrap;
+}
+.set-up.intro h1 {
+    background-image: url("../img/welcome-buildingville.png");
+    background-size: auto 72px;
+    height: 72px;
+    width: 309px;
+}
+.set-up.new-game h1 {
+    background-image: url("../img/h-set-the-stage.png");
+    background-size: auto 20px;
+    height: 20px;
+    margin: 51px auto 32px;
+    width: 181px;
+}
+.set-up.sign-in h1 {
+    background-image: url("../img/h-sign-in.png");
+    background-size: auto 20px;
+    height: 20px;
+    margin: 51px auto 62px;
+    width: 89px;
+}
+.set-up p {
+    color: white;
+    font-family: 'bryant';
+    font-size: 15px;
+    line-height: 1.2;
+    margin: 20px 42px;
+    text-shadow: 0 1px 1px black;
+}
+.set-up.intro p:first-letter {
+    font-family: 'mission-script';
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 18px;
+}
+.set-up.new-game hgroup > p, .set-up.sign-in hgroup > p {
+    line-height: 1;
+    margin-bottom: 16px;
+}
+.set-up form input[type="text"], .set-up form .dropdown-toggle {
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.75) inset;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #454545;
+    display: block;
+    font-family: 'bryant';
+    font-size: 15px;
+    padding: 9px 5px;
+    width: 100%;
+}
+.set-up form .dropdown-block {
+    text-align: left;
+}
+.set-up form .dropdown-block .dropdown-toggle {
+    position: relative;
+    text-decoration: none;
+}
+.set-up form .dropdown-block .dropdown-toggle .caret {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.31), rgba(0, 0, 102, 0.31) 50%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 102, 0.31)) #0C579D;
+    background: linear-gradient(rgba(255, 255, 255, 0.31), rgba(0, 0, 102, 0.31) 50%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 102, 0.31)) #0C579D;
+    border: 1px solid black;
+    border-radius: 0 5px 5px 0;
+    height: 100%;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    width: 35px;
+}
+.set-up form .dropdown-block .dropdown-toggle .caret:before, .set-up form .dropdown-block .dropdown-toggle .caret:after {
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent;
+    border-style: solid;
+    border-width: 8px 5px;
+    content: "";
+    height: 0;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -3px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+}
+.set-up form .dropdown-block .dropdown-toggle .caret:after {
+    border-color: rgba(255, 255, 255, 0.8) transparent transparent;
+    margin-top: -4px;
+}
+.set-up form .dropdown-block .dropdown {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.75);
+    display: block;
+    height: 0; /* Required for animation to work on the first try. */
+    list-style: none outside none;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+.set-up form .dropdown-block .dropdown li a {
+    color: #454545;
+    display: block;
+    font-size: 15px;
+    padding: 5px;
+    text-decoration: none;
+}
+.set-up form .dropdown-block .dropdown.open {
+    display: block;
+}
+.set-up form .btn {
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+.set-up #fields {
+    background: rgba(0, 0, 0, 0.31);
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.75) inset, 0 1px rgba(255, 255, 255, 0.2);
+    margin: 19px 37px;
+    padding: 1px 0;
+}
+.set-up #fields p {
+    font-size: 18px;
+    line-height: 20px;
+    margin: -7px 0 20px;
+}
+.set-up .form-item {
+    margin: 20px 20px 25px;
+    position: relative;
+}
+.set-up .form-item.is-ok .icon-ok { /* Shows a green icon next to username, not currently used */
+    display: block;
+}
+.set-up .form-item.is-ok input[type="text"] { /* ^^^ */
+    padding-right: 31px;
+}
+.set-up form > .form-item {
+    margin: 16px 66px;
+    position: relative;
+}
+.set-up .error {
+    bottom: -15px;
+    color: #F25221;
+    font-size: 10px;
+    left: 0;
+    position: absolute;
+    text-align: left;
+    text-indent: 6px;
+    width: 100%;
+}
+.set-up .icon-ok {
+    background-image: url("../img/icon-ok.png");
+    background-size: auto 25px;
+    display: none;
+    height: 25px;
+    margin-top: -12px;
+    overflow: hidden;
+    position: absolute;
+    right: 5px;
+    text-indent: 200%;
+    top: 50%;
+    white-space: nowrap;
+    width: 26px;
+}
+.set-up.sign-in .controls {
+    margin-top: 129px;
+}
+.set-up .btn {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.25), transparent) rgba(43, 95, 151, 0.31);
+    background: linear-gradient(rgba(255, 255, 255, 0.25), transparent) rgba(43, 95, 151, 0.31);
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4), 0 1px rgba(255, 255, 255, 0.25) inset, 0 0 3px rgba(255, 255, 255, 0.2) inset;
+    color: #FC0;
+    display: block;
+    font-family: 'bryant-bold';
+    font-size: 20px;
+    margin: 41px 37px;
+    padding: 22px 0;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
+    text-transform: uppercase;
+}
+.set-up .btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+.set-up .btn:active {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5) inset, 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+/** END Intro Pages **/
+
+
+/** START Top Portion (Building Image) **/
+#game-top {
+    height: 213px;
+}
+#game-image {
+    height: inherit;
+}
+#toggle-settings {
+    background: url("../img/icons.png") -80px -80px;
+    height: 17px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 16px;
+}
+/** END Top Portion (Building Image) **/
+
+
+/** START Middle Portion (Main Progress Bars) **/
+.progress {
+    background: url("../img/progress-noise.png");
+    height: 153px;
+    overflow: hidden;
+    width: 100%;
+}
+.progress div {
+    background: url("../img/bar-noise.png");
+    border-radius: 3px;
+    box-shadow: 0 1px 3px #74726F inset, 0 1px white;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 15px;
+    font-weight: bold;
+    height: 25px;
+    line-height: 26px;
+    margin-left: 55px;
+    margin-top: 20px;
+    padding: 0 10px;
+    position: relative;
+    text-align: right;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.75);
+    width: 220px;
+}
+.progress div .progress-bar {
+    background: black;
+    border-radius: 3px 0 0 3px;
+    box-shadow: 0 1px 3px #74726F inset, 0 1px white;
+    display: block;
+    height: 25px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+.progress div .progress-label {
+    position: absolute;
+    right: 10px;
+}
+.progress .positive .progress-label {
+    left: 20px;
+}
+.progress .negative .progress-label {
+    right: 60px;
+}
+.progress div.money .progress-bar {
+    background: #FFD320;
+}
+.progress div:before {
+    z-index: 1;
+}
+.progress div.money:before {
+    background: url("../img/icons.png") -7px 0;
+    content: "";
+    height: 25px;
+    left: -32px;
+    position: absolute;
+    top: 0;
+    width: 13px;
+}
+.progress div.happiness .progress-bar {
+    background: #20C7BD;
+}
+.progress div.happiness:before {
+    background: url("../img/icons.png") -20px -16px;
+    content: "";
+    height: 25px;
+    left: -36px;
+    position: absolute;
+    top: -2px;
+    width: 22px;
+}
+.progress div.efficiency .progress-bar {
+    background: #83C331;
+}
+.progress div.efficiency:before {
+    background: url("../img/icons.png") -40px -36px;
+    content: "";
+    height: 25px;
+    left: -35px;
+    position: absolute;
+    top: -3px;
+    width: 22px;
+}
+/** END Middle Portion (Main Progress Bars) **/
+
+
+/** START Bottom Portion (Projects) **/
+#game-bottom {
+    background: url("../img/dark-grey-noise.png");
+    border-top: 1px solid white;
+    height: 113px;
+    overflow: hidden;
+}
+#big-button-container {
+    background: url("../img/dark-light-grey-noise.png");
+    border-right: 1px solid #646463;
+    float: left;
+}
+#big-button {
+    background: -webkit-linear-gradient(#292928, #40403F);
+    background: linear-gradient(#292928, #40403F);
+    border-radius: 50%;
+    box-shadow: 0 1px rgba(255, 255, 255, 0.1), 0 2px 5px rgba(0, 0, 0, 0.75) inset;
+    color: white;
+    display: block;
+    font-family: 'bryant-bold';
+    font-size: 18px;
+    height: 80px;
+    margin: 15px;
+    padding: 1px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 1px 1px #888;
+    width: 80px;
+}
+#big-button .bevel {
+    background: -webkit-linear-gradient(#7BD544, #348103);
+    background: linear-gradient(#7BD544, #348103);
+    border-radius: 50%;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+    display: block;
+    height: 74px;
+    margin: 2px auto;
+    padding: 1px;
+    width: 74px;
+}
+#big-button .inner {
+    background: -webkit-linear-gradient(#5DB625, #7BD544 42%, #439D0C);
+    background: linear-gradient(#5DB625, #7BD544 42%, #439D0C);
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.15) inset;
+    display: block;
+    height: 68px;
+    margin: 3px auto;
+    width: 68px;
+}
+#big-button .inner span {
+    display: block;
+    padding-top: 12px;
+}
+#active-projects {
+    float: right;
+    width: 207px;
+}
+#active-projects ul li {
+    border-bottom: 1px solid #30302F;
+    border-top: 1px solid #545453;
+    color: white;
+    font-size: 11px;
+    line-height: 12px;
+    min-height: 36px;
+    overflow: hidden;
+    padding: 0 5px;
+    vertical-align: middle;
+}
+#active-projects ul li span {
+    display: inline-block;
+    font-weight: normal;
+    line-height: 35px;
+    vertical-align: middle;
+}
+#active-projects ul li span.number {
+    border-right: 1px solid #585857;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'bryant-bold';
+    font-size: 15px;
+    margin-right: 5px;
+    padding-right: 5px;
+    width: 8px;
+}
+#active-projects ul li span.action-title {
+    font-size: 14px;
+    line-height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 98px;
+}
+#active-projects ul li span.timer {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 50%, black 50%) black;
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2) 50%, black 50%) black;
+    border-radius: 3px;
+    box-shadow: 0 1px rgba(255, 255, 255, 0.2), 0 0 0 1px black inset;
+    color: #6DEA1F;
+    float: right;
+    font-size: 14px;
+    letter-spacing: -1px;
+    line-height: 25px;
+    margin-left: -1px;
+    margin-top: 5px;
+    padding: 0 4px;
+}
+#active-projects ul li span.timer b {
+    color: #488E25;
+    font-weight: normal;
+}
+/** END Bottom Portion (Projects) **/
+
+
+/** START Game Settings **/
+#settings {
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#settings .panel {
+    background: url("../img/panel-bg.png") #F3F1EE;
+    background-size: auto 70px;
+    border-bottom: 3px solid #B1ACAC;
+    box-shadow: 0 -1px white inset, 0 0 8px rgba(0, 0, 0, 0.5);
+    height: 70px;
+    text-align: center;
+}
+#settings .panel li {
+    display: inline-block;
+    margin: 8px 30px;
+    vertical-align: middle;
+}
+#settings .panel li a {
+    display: block;
+}
+#settings .icon {
+    background: url("../img/sprite-settings.png");
+    background-size: auto 104px;
+    overflow: hidden;
+    text-indent: 200%;
+    white-space: nowrap;
+}
+#settings .close {
+    background-position: 4px 3px;
+    height: 21px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 21px;
+}
+#settings .music {
+    background-position: -16px 0;
+    height: 49px;
+    width: 45px;
+}
+#settings .music.on {
+    background-position: -16px -52px;
+}
+#settings .sound {
+    background-position: -64px 0;
+    height: 44px;
+    width: 58px;
+}
+#settings .sound.on {
+    background-position: -64px -52px;
+}
+/** END Game Settings **/
+
+
+/** START Pop-Ups **/
+.popup {
+    background: url("../img/fabric-texture.png");
+    height: 75%;
+    left: 5%;
+    margin-top: 40px;
+    padding: 30px 25px 20px;
+    position: absolute;
+    top: 0;
+    width: 75%;
+}
+.popup:before {
+    background: url("../img/stripes.png");
+    content: "";
+    height: 10px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.popup .from-to ul {
+    margin-bottom: 10px;
+}
+.popup .from-to ul li {
+    border-bottom: 1px solid #CCC;
+    box-shadow: 0 1px white;
+    color: #444;
+    font-size: 13px;
+    line-height: 15px;
+    padding: 5px 0;
+}
+.popup .from-to ul li span {
+    float: left;
+    width: 60px;
+}
+.popup p {
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.popup.details p {
+    font-size: 14px;
+    line-height: 1;
+    text-align: left;
+}
+.popup .button.medium {
+    display: block;
+    margin: auto;
+}
+.popup .button.medium.transparent {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.5), rgba(68, 68, 68, 0.2)) rgba(235, 235, 235, 0.4);
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(68, 68, 68, 0.2)) rgba(235, 235, 235, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    color: #959595;
+}
+/** END Pop-Ups **/
+
+
+/** START Pop-Up Progress Bars **/
+section.progress {
+    background: transparent;
+    border-bottom: 1px solid #C4C5C6;
+    height: 120px;
+    margin-bottom: 10px;
+    padding-left: 65px;
+    position: relative;
+    width: 73%;
+}
+section.progress:before {
+    background: #C4C5C6;
+    content: "";
+    height: 85%;
+    left: 120px;
+    position: absolute;
+    top: 8px;
+    width: 1px;
+}
+section.progress div {
+    background: transparent;
+    box-shadow: none;
+    margin-top: 10px;
+    text-align: left;
+    text-indent: -64px;
+    width: 90px;
+}
+section.progress div.negative {
+    text-align: right;
+    text-indent: 0;
+}
+section.progress div.positive .progress-bar {
+    border-radius: 0 3px 3px 0;
+}
+section.progress .progress-bar {
+    box-shadow: 0 1px #B9BABA;
+}
+
+/* Position the bar icons, ugh. */
+section.progress div.money:before {
+    left: -111px;
+}
+section.progress div.happiness:before {
+    left: -115px;
+}
+section.progress div.efficiency:before {
+    left: -114px;
+}
+/** END Pop-Up Progress Bars **/
+
+
+/** START Clipboard Backdrop (Mostly for Project List) **/
+.clipboard {
+    background-image: url("../img/clipboard.png");
+    background-size: 100% auto;
+    height: 67%;
+    left: 0;
+    padding: 80px 40px;
+    position: absolute;
+    top: 0;
+    width: 75%;
+}
+.clipboard h1 {
+    border-bottom: 1px solid rgba(69, 69, 69, 0.2);
+    padding-bottom: 10px;
+}
+.clipboard h1.completed {
+    background: url("../img/icons.png") -280px -260px;
+    line-height: 25px;
+    padding-bottom: 20px;
+    padding-left: 13px;
+}
+.clipboard h2 {
+    border-bottom: 1px solid #C6C7C7;
+    border-top: 1px solid #C6C7C7;
+    color: #F9423A;
+    padding: 10px 0;
+    text-align: center;
+}
+.clipboard h3 {
+    border-bottom: 1px solid #CCC;
+    font-size: 13px;
+    line-height: 17px;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+.clipboard p {
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.clipboard.blueprint {
+    background-image: url("../img/blue-print-clipboard.png");
+    color: white;
+}
+.clipboard.blueprint h1 {
+    border-bottom: 1px solid #639FD2;
+    color: white;
+}
+/** END Clipboard Backdrop (Mostly for Project List) **/
+
+
+/** START Project List **/
+.grad {
+    height: 298px;
+    position: relative;
+}
+.grad.overflow .table-container table {
+    margin-bottom: 10px;
+}
+.grad.window {
+    height: 240px;
+    margin-bottom: 10px;
+}
+.table-container {
+    margin-top: 15px;
+    max-height: 298px;
+    overflow: auto;
+}
+.table-container::-webkit-scrollbar {
+    /* Does not work in firefox */
+    display: none;
+}
+.window .table-container {
+    max-height: 240px;
+}
+.table-data {
+    border: 1px solid #639FD2;
+    border-collapse: collapse;
+    width: 100%;
+}
+.table-data tbody {
+    background: -webkit-linear-gradient(rgba(8, 59, 112, 0), rgba(8, 59, 112, 0.3));
+    background: linear-gradient(rgba(8, 59, 112, 0), rgba(8, 59, 112, 0.3));
+}
+.table-data td {
+    border: 1px solid #639FD2;
+    padding: 5px;
+    vertical-align: middle;
+}
+.table-data .title {
+    font-family: 'bryant-bold';
+    font-size: 14px;
+    line-height: 1.2em;
+    padding: 10px 15px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 120px;
+}
+.table-data .title a {
+    color: white;
+    text-decoration: none;
+}
+.table-data .title span {
+    background: url("../img/icons.png") -102px -103px;
+    display: inline-block;
+    height: 18px;
+    margin-top: 8px;
+    padding-left: 21px;
+}
+.table-data .title span.happiness {
+    color: #16ECDF;
+    margin-right: 3px;
+}
+.table-data .title span.efficiency {
+    background: url("../img/icons.png") -123px -121px;
+    color: #78BE20;
+}
+.table-data .price {
+    color: #FFCD00;
+    font-size: 17px;
+    height: 38px;
+}
+.table-data .price, .table-data .time {
+    padding-right: 5px;
+    text-align: right;
+}
+.table-data .info {
+    display: block;
+    line-height: 16px;
+    padding-left: 40px;
+    padding-right: 0;
+    padding-top: 5px;
+    position: relative;
+    text-align: left;
+}
+.table-data .info:after {
+    background: url("../img/icons.png") -160px -140px;
+    content: "";
+    height: 19px;
+    left: 10px;
+    position: absolute;
+    top: 15px;
+    width: 20px;
+}
+/** END Project List **/
+
+
+/** START Clipboard Slider (Mostly for Bills) **/
+.table-bill {
+    border-collapse: collapse;
+    font-family: "bryant-bold";
+    margin: 0 auto;
+    width: 90%;
+}
+.table-bill span {
+    background: #EBECEC;
+    display: inline-block;
+    margin-top: 3px;
+}
+.table-bill tr {
+    background: url("../img/dots.png") 0 78%;
+}
+.table-bill th, .table-bill td {
+    padding: 2px 0;
+}
+.table-bill th {
+    color: #959595;
+    font-size: 15px;
+    text-align: left;
+    text-transform: uppercase;
+}
+.table-bill th span {
+    padding-right: 3px;
+}
+.table-bill td {
+    color: black;
+    text-align: right;
+}
+.table-bill td span {
+    padding-left: 3px;
+}
+.money-list {
+    border-bottom: 1px solid #CBCCCC;
+    font-family: 'bryant-bold';
+    margin: 0 auto 20px;
+    overflow: hidden;
+    padding: 25px 0 15px;
+    width: 84%;
+}
+.money-list dt {
+    clear: both;
+    color: #959595;
+    float: left;
+    font-size: 15px;
+    padding-right: 3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.money-list dd.price {
+    color: black;
+    float: right;
+    padding-left: 3px;
+}
+.money-list .dots {
+    background: url("../img/dots.png") repeat-x 0 80%;
+    display: block;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.money-list.total-cost {
+    background: -webkit-linear-gradient(left, transparent, rgba(255, 255, 255, 0.59) 16%, rgba(255, 255, 255, 0.71) 26%, white 51%, rgba(255, 255, 255, 0.7) 77%, rgba(255, 255, 255, 0.59) 86%, transparent);
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.59) 16%, rgba(255, 255, 255, 0.71) 26%, white 51%, rgba(255, 255, 255, 0.7) 77%, rgba(255, 255, 255, 0.59) 86%, transparent);
+    border: medium none;
+    margin-bottom: 60px;
+    padding: 9px 18px;
+}
+.money-list.total-cost dt, .money-list.total-cost dd {
+    margin-bottom: 0;
+}
+a.prev {
+    background: url("../img/icons.png") -239px -215px;
+    display: block;
+    height: 37px;
+    left: 9px;
+    position: absolute;
+    text-indent: -9999px;
+    top: 222px;
+    width: 33px;
+}
+a.next {
+    background: url("../img/icons.png") -199px -175px;
+    display: block;
+    height: 37px;
+    position: absolute;
+    right: 9px;
+    text-indent: -9999px;
+    top: 222px;
+    width: 33px;
+}
+.slider {
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+    width: 240px;
+}
+.slider .slide-container {
+    left: 0; /* Required for animation to work on the first try. */
+    position: absolute;
+}
+.slider .slide {
+    float: left;
+    width: 240px;
+}
+.slider .slide .progress {
+    margin-bottom: 40px;
+}
+.slider .slide .progress div:before {
+    left: -100px;
+}
+/** END Clipboard Slider (Mostly for Bills) **/
+
+
+/** START Level Won **/
+#level-won {
+    background-image: url("../img/paper-texture.jpg");
+    background-size: 100% auto;
+    cursor: pointer;
+    display: inline-block;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    width: inherit;
+}
+#level-won:after {
+    background-image: url("../img/open-envelope.png");
+    background-size: 100% auto;
+    bottom: 0;
+    content: "";
+    height: 125px;
+    position: absolute;
+    width: 100%;
+}
+#level-won hgroup {
+    border-bottom: 1px solid #CDBFAE;
+    border-top: 1px solid #CDBFAE;
+    box-shadow: 0 1px #EFEFEF inset, 0 1px white;
+    margin: 38px auto 12px;
+    padding: 21px 0 12px;
+    text-align: center;
+    width: 80%;
+}
+#level-won hgroup h1 {
+    font-family: 'mission-script';
+    font-size: 33px;
+    line-height: 20px;
+    margin-bottom: 13px;
+    text-transform: none;
+}
+#level-won h2 {
+    font-size: 15px;
+    text-transform: uppercase;
+}
+#level-won .accomplishment {
+    border: 1px solid #A69C8C;
+    height: 146px;
+    margin: auto auto 15px;
+    position: relative;
+    width: 225px;
+}
+#level-won .accomplishment img {
+    border: 3px solid white;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+#level-won .accomplishment span {
+    background: url("../img/picture-pin.png");
+    height: 12px;
+    position: absolute;
+    width: 12px;
+}
+#level-won .accomplishment span#top-left {
+    left: -4px;
+    top: -4px;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+#level-won .accomplishment span#top-right {
+    right: -4px;
+    top: -4px;
+}
+#level-won .accomplishment span#bottom-right {
+    bottom: -4px;
+    right: -4px;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+#level-won .accomplishment span#bottom-left {
+    bottom: -4px;
+    left: -4px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+#level-won .game-instruction {
+    border-bottom: 1px solid #A69C8C;
+    border-top: 1px solid #A69C8C;
+    box-shadow: 0 1px #EFEFEF inset, 0 1px white;
+    line-height: 1.3em;
+    margin: auto auto 15px;
+    padding: 4px 0;
+    text-align: center;
+    width: 80%;
+}
+#level-won .game-instruction p {
+    font-size: 15px;
+}
+#level-won h3 {
+    color: #326295;
+    font-family: 'bryant-bold';
+    font-size: 18px;
+    margin: auto;
+    text-align: center;
+    text-shadow: 0 0 10px white;
+    text-transform: uppercase;
+    width: 60%;
+}
+/** END Level Won **/
+
+
+/** START Game Won **/
+#game-won {
+    background-image: url("../img/winner-bg.jpg");
+    background-size: 100% auto;
+    display: inline-block;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    width: inherit;
+}
+#game-won hgroup h1 {
+    background-image: url("../img/winner-title.png");
+    background-size: 100% auto;
+    height: 75px;
+    margin: auto;
+    text-indent: -999em;
+    width: 270px;
+}
+#game-won p {
+    color: #FFE154;
+    font-size: 15px;
+    margin: auto;
+    text-align: center;
+    text-shadow: 0 1px 1px #333;
+}
+#game-won #play-again-container {
+    margin-top: 20px;
+    text-align: center;
+}
+#game-won #play-again {
+    background: -webkit-linear-gradient(#F5C863, #FBE3B7 50%, #FACB45 51%, #F9E08E);
+    background: linear-gradient(#F5C863, #FBE3B7 50%, #FACB45 51%, #F9E08E);
+    border: 1px solid #222;
+    border-radius: 3px;
+    box-shadow: 0 -2px #D19440 inset, 0 1px 5px black;
+    color: #514848;
+    font-family: 'bryant-bold';
+    font-size: 18px;
+    height: 26px;
+    padding: 10px;
+    text-decoration: none;
+    text-shadow: 0 1px white;
+    text-transform: uppercase;
+}
+/** END Game Won **/
+
+
+/** START Game Lost **/
+#game-over {
+    background-image: url("../img/loser-bg.jpg");
+    background-size: 100% auto;
+    color: white;
+    display: inline-block;
+    font-family: 'bryant-medium';
+    font-size: 14px;
+    height: inherit;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: inherit;
+}
+#game-over hgroup {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-style: solid;
+    border-width: 1px 0;
+    margin: 37px 40px -10px;
+    padding: 15px 0 5px;
+}
+#game-over hgroup * {
+    color: white;
+}
+#game-over hgroup h1 {
+    font-size: 36px;
+    margin-top: 1px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+#game-over .message {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-style: solid;
+    border-width: 1px 0;
+    font-size: 15px;
+    margin: -12px 40px 14px;
+    padding: 15px 0 12px;
+}
+#game-over .controls p {
+    font-size: 15px;
+    margin-top: 25px;
+}
+#game-over .btn {
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.25), transparent);
+    background: linear-gradient(rgba(255, 255, 255, 0.25), transparent);
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4), 0 1px rgba(255, 255, 255, 0.3) inset, 0 0 3px rgba(255, 255, 255, 0.2) inset;
+    color: #FC0;
+    display: block;
+    font-family: 'bryant-bold';
+    font-size: 18px;
+    margin: 16px 40px;
+    padding: 12px 0;
+    text-decoration: none;
+    text-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
+    text-transform: uppercase;
+}
+#game-over .btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+#game-over .btn:active {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5) inset, 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+/** END Game Lost **/
+
+
+/** START Unused Loading **/
+#loading {
+    background-image: url("../img/loading-bg.jpg");
+    background-size: 100% auto;
+    display: inline-block;
+    height: inherit;
+    position: absolute;
+    top: 0;
+    width: inherit;
+}
+#loading h1 {
+    background-image: url("../img/welcome-buildingville.png");
+    background-size: 100% auto;
+    height: 72px;
+    left: 50%;
+    margin-left: -155px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: 200%;
+    top: 40%;
+    white-space: nowrap;
+    width: 309px;
+}
+/** END Unused Loading **/

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/> <!-- untested: screen scaling -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/> <!-- untested: hide the URL bar in iPhone and old Android devices -->
+
+    <title>Panoptix Game</title>
+
+    <!-- Our styles. -->
+    <link href="css/style.css" rel="stylesheet"/>
+    
+    <!-- Latest jQuery, drops support for IE6/7/8. -->
+    <script src="js/jquery-2.0.0.min.js"></script>
+    
+    <!-- Only has jQuery Mobile's touch handling for handling swipes as well as unifying touches and clicks as 'taps'. -->
+    <script src="js/jquery.mobile-1.3.1.min.js"></script>
+    
+    <!-- Use CSS3 transitions and transforms instead of jQuery animations for much better performance on mobile. -->
+    <!-- https://github.com/rstacruz/jquery.transit/commit/ce6fae44f27a2d5760e5fb2f8c83043b764eb600 -->
+    <script src="js/jquery.transit.js"></script>
+    
+    <!-- Our data and logic. -->
+    <script src="js/data.js"></script>
+    <script src="js/scripts.js"></script>
+</head>
+
+<body>
+    <!-- The game's portion of the webpage. -->
+    <div id="container">
+
+        <!-- Welcome screen. -->
+        <div id="intro-page" class="set-up intro" style="display: none">
+            <hgroup>
+                <h1>Welcome to Buildingville!</h1>
+            </hgroup>
+
+            <p>
+                Replace me.
+            </p>
+
+            <form>
+                <div class="controls">
+                    <a href="#" id="go-to-new-game" class="btn new-game">Start a new game</a>
+                    <a href="#" id="go-to-signin" class="link">Sign in</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- New user. -->
+        <div id="new-game-page" class="set-up new-game" style="display: none">
+            <hgroup>
+                <h1>Set the stage</h1>
+            </hgroup>
+
+            <p>First we need to know a little bit about you&#8230;</p>
+
+            <form>
+                <div id="fields">
+                    <div class="form-item">
+                        <input id="preferred-name" type="text" placeholder="Create a username" required="required" />
+                        <span class="error" style="display: none"></span>
+                    </div>
+
+                    <div class="form-item">
+                        <div class="dropdown-block">
+                            <a href="#" class="dropdown-toggle">
+                                <span id="preferred-city" class="value">Preferred City</span>
+                                <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown" data-select="#preferred-city">
+                                <li data-value="1">
+                                    <a href="#">Jacksonville, FL</a>
+                                </li>
+                                <li data-value="2">
+                                    <a href="#">Anaheim, CA</a>
+                                </li>
+                                <li data-value="3">
+                                    <a href="#">San Antonio, TX</a>
+                                </li>
+                                <li data-value="4">
+                                    <a href="#">Boulder, CO</a>
+                                </li>
+                                <li data-value="5">
+                                    <a href="#">Milwaukee, WI</a>
+                                </li>
+                                <li data-value="6">
+                                    <a href="#">Providence, RI</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p>Thanks, good luck!</p>
+                </div>
+
+                <div class="controls">
+                    <a href="#" id="new-player" class="btn new-game">Begin</a>
+                    <a href="#" id="switch-to-signin" class="link">Sign in</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Returning user. -->
+        <div id="signin-page" class="set-up sign-in" style="display: none">
+            <hgroup>
+                <h1>Sign in</h1>
+            </hgroup>
+
+            <p>
+                To continue your game, just let us know what your username is.
+                <br />
+                Yep, that&#8217;s it.
+            </p>
+
+            <form>
+                <div class="form-item">
+                    <input id="username" type="text" placeholder="Username" required="required" />
+                    <span class="icon-ok">OK</span>
+                </div>
+
+                <div class="controls">
+                    <a href="#" id="signin" class="btn new-game">Submit</a>
+                    <a href="#" id="switch-to-new-game" class="link">Start a new game</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Game's main screen. -->
+        <div id="game-page" style="display: none">
+
+            <!-- Top. -->
+            <header id="game-top">
+                <a href="#" id="toggle-settings"></a>
+                <img id="game-image" src="img/buildings/gas-station.png" alt="gas-station"/>
+            </header>
+
+            <!-- Middle. -->
+            <div id="main" class="progress">
+                <div class="money">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+                <div class="happiness">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+                <div class="efficiency">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+            </div>
+
+            <!-- Bottom. -->
+            <footer id="game-bottom">
+
+                <!-- New Project button. -->
+                <div id="big-button-container">
+                    <a href="#" id="big-button">
+                        <span class="bevel">
+                            <span class="inner">
+                                <span>New Project</span>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- List of active projects. -->
+                <div id="active-projects">
+                    <ul></ul>
+                </div>
+            </footer>
+        </div>
+        
+        <!-- Makes the game screen dark when it's not in focus. -->
+        <div id="overlay" style="display: none">
+        </div>
+        
+        <!-- The settings panel that may never be used. -->
+        <div id="settings" style="display: none">
+            <div class="panel">
+                <ul>
+                    <li>
+                        <a href="#" class="icon sound on">Sound</a>
+                    </li>
+                    <li>
+                        <a href="#" class="icon music on">Music</a>
+                    </li>
+                </ul>
+
+                <a href="#" class="close icon transparent">Close</a>
+            </div>
+        </div>
+        
+        <!-- Clipboard project list. -->
+        <div id="project-list" class="clipboard blueprint" style="display: none">
+            <h1>Project List</h1>
+            <a href="#" class="close">Close</a>
+
+            <div id="project-list-container" class="grad">
+                <div class="table-container">
+                    <table class="table-data">
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shows project details after a project is selected. -->
+        <div id="project-details" class="clipboard" style="display: none">
+            <h1 class="name"></h1>
+            <h2>Time Required: <span class="time"></span></h2>
+
+            <section class="progress">
+                <div class="money">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+                <div class="happiness">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+                <div class="efficiency">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+            </section>
+
+            <p class="description"></p>
+
+            <a href="#" id="project-start" class="green button">Start</a>
+            <a href="#" id="project-cancel" class="button transparent">Cancel</a>
+        </div>
+
+        <!-- Shows details for an event. -->
+        <div id="event-details" class="popup details" style="display: none">
+            <div class="from-to">
+                <ul>
+                    <li>To: <strong>Username</strong></li>
+                    <li>From: <strong>Boss</strong></li>
+                    <li>Subject: <strong class="name"></strong></li>
+                </ul>
+            </div>
+
+            <p class="description"></p>
+
+            <section class="progress">
+                <div class="money">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+                <div class="happiness">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+                <div class="efficiency">
+                    <span class="progress-bar"></span>
+                    <span class="progress-label"></span>
+                </div>
+            </section>
+
+            <a href="#" id="eventDismiss" class="button transparent medium">Ok</a>
+        </div>
+
+        <!-- Bill slider. -->
+        <div id="bill-slider" class="clipboard" style="display: none">
+            <h1>Time to Pay the Bills</h1>
+
+            <a href="#" class="prev">Prev</a>
+            <a href="#" class="next">Next</a>
+
+            <div class="slider">
+                <div class="slide-container">
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <a href="#" id="payBillButton" class="green button">Pay Bill</a>
+                <a href="#" id="notNowButton" class="button transparent">Not Now</a>
+            </div>
+        </div>
+
+        <!-- Rent slider. -->
+        <div id="rent-slider" class="clipboard" style="display: none">
+            <h1>Time to Collect Rent</h1>
+
+            <a href="#" class="prev">Prev</a>
+            <a href="#" class="next">Next</a>
+
+            <div class="slider">
+                <div class="slide-container">
+                </div>
+            </div>
+            
+            <div class="btn-group">
+                <a href="#" class="green button">Collect</a>  
+            </div>
+        </div>
+
+        <!-- Project complete slider. -->
+        <div id="project-complete-slider" class="clipboard" style="display: none">
+            <h1 class="completed">Project Complete</h1>
+
+            <a href="#" class="prev">Prev</a>
+            <a href="#" class="next">Next</a>
+
+            <div class="slider">
+                <div class="slide-container">
+                    <div class="slide">
+                        <h3 class="name"></h3>
+                        <section class="progress">
+                            <div class="money">
+                                <span class="progress-bar"></span>
+                                <span class="progress-label"></span>
+                            </div>
+                            <div class="happiness">
+                                <span class="progress-bar"></span>
+                                <span class="progress-label"></span>
+                            </div>
+                            <div class="efficiency">
+                                <span class="progress-bar"></span>
+                                <span class="progress-label"></span>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="#" id="project-complete-ok" class="button green center">Ok</a>
+        </div>
+
+        <!-- Message center. -->
+        <div id="message-center" class="clipboard blueprint" style="display: none">
+            <h1>Welcome Back</h1>
+
+            <div class="grad window overflow">
+                <div class="table-container">
+                    <table class="table-data">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="info">You have 3 months of rent to collect</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="info">You have 3 months of rent to collect</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="info">You have 3 months of rent to collect</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="info">You have 3 months of rent to collect</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="info">You have 3 months of rent to collect</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="info">You have 3 months of rent to collect</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <a href="#" class="green button medium">Begin Tasks</a>
+        </div>
+
+        <!-- Level won. -->
+        <div id="level-won" style="display: none">
+            <hgroup>
+                <h1>Congratulations</h1>
+                <h2>You received a Promotion!</h2>
+            </hgroup>
+
+            <figure class="accomplishment">
+                <img id="game-image-cropped" src="" alt="next level">
+                <span id="top-left"></span>
+                <span id="top-right"></span>
+                <span id="bottom-right"></span>
+                <span id="bottom-left"></span>
+            </figure>
+
+            <div class="game-instruction">
+                <p>Your Next Assignment will be:</p>
+                <h2 id="next-level-label"></h2>
+                <p>Do us proud!</p>
+            </div>
+
+            <h3>Tap Anywhere to Continue</h3>
+        </div>
+
+        <!-- Game won. -->
+        <div id="game-won" style="display: none">
+            <hgroup>
+                <h1>Congratulations!</h1>
+            </hgroup>
+            
+            <img src="img/winner-badges.png" alt="winner">
+
+            <p>But you're way too talented for retirement!</p>
+            
+            <div id="play-again-container">
+                <a href="#" id="play-again">Play Again</a>
+            </div>
+        </div>
+
+        <!-- Game lost. -->
+        <div id="game-over" style="display: none">
+            <hgroup>
+                <h2>Oh no!</h2>
+                <h1>Game Over</h1>
+            </hgroup>
+
+            <img src="img/game-over.png" alt="game over">
+
+            <p class="message">It appears you&#8217;ve run out of money!</p>
+
+            <div class="controls">
+                <p>Luckily, we believe in second chances.</p>
+
+                <a href="#" id="game-over-restart" class="btn new-game">Start a new game</a>
+            </div>
+        </div>
+
+        <!-- Unused loading. -->
+        <div id="loading" style="display: none">
+            <hgroup>
+                <h1>Welcome to Buildingville!</h1>
+            </hgroup>
+        </div>
+
+    </div> <!-- end #container -->
+</body>
+</html>
